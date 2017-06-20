@@ -19,6 +19,6 @@ namespace LivePerformance.DAL.INTERFACE
 
         void UpdatePartij(Partij partij);
 
-        Partijuitslag GetUitslagByPartij(int id);
+        List<Partijuitslag> GetUitslagByPartij(int id);
     }
 }

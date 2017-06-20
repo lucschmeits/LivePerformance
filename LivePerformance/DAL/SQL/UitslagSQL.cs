@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,32 +13,89 @@ namespace LivePerformance.DAL.SQL
     {
         public void CreateUitslag(Uitslag uitslag)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public void DeleteUitslag(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public List<Uitslag> RetrieveAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+                return null;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public Uitslag RetrieveUitslag(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+                return null;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public Uitslag RetrieveUitslagByDate(DateTime datum)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+                return null;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public void UpdateUitslag(Uitslag uitslag)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
     }
 }

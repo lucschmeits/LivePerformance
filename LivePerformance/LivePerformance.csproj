@@ -62,12 +62,29 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\INTERFACE\ICoalitie.cs" />
+    <Compile Include="DAL\INTERFACE\IPartij.cs" />
+    <Compile Include="DAL\INTERFACE\IPartijUitslag.cs" />
+    <Compile Include="DAL\INTERFACE\IUitslag.cs" />
+    <Compile Include="DAL\REPO\CoalitieREPO.cs" />
+    <Compile Include="DAL\REPO\PartijREPO.cs" />
+    <Compile Include="DAL\REPO\PartijUitslagREPO.cs" />
+    <Compile Include="DAL\REPO\UitslagREPO.cs" />
+    <Compile Include="DAL\SQL\CoalitieSQL.cs" />
+    <Compile Include="DAL\SQL\PartijSQL.cs" />
+    <Compile Include="DAL\SQL\PartijUitslagSQL.cs" />
+    <Compile Include="DAL\SQL\UitslagSQL.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Coalitie.cs" />
+    <Compile Include="Models\env.cs" />
+    <Compile Include="Models\Partij.cs" />
+    <Compile Include="Models\Partijuitslag.cs" />
+    <Compile Include="Models\Uitslag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -93,5 +110,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

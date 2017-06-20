@@ -8,10 +8,10 @@ namespace LivePerformance.Models
 {
     public class Partij
     {
-        public int Id { get; private set; }
-        public string Afkorting { get; private set; }
-        public string Naam { get; private set; }
-        public string Lijsttrekker { get; private set; }
+        public int Id { get;  set; }
+        public string Afkorting { get;  set; }
+        public string Naam { get;  set; }
+        public string Lijsttrekker { get;  set; }
 
         public Partij(string afkorting, string naam, string lijsttrekker)
         {
@@ -27,6 +27,10 @@ namespace LivePerformance.Models
             Afkorting = afkorting;
             Naam = naam;
             Lijsttrekker = lijsttrekker;
+        }
+
+        public Partij()
+        {
         }
     }
 }

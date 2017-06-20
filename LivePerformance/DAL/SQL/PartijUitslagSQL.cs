@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,27 +13,74 @@ namespace LivePerformance.DAL.SQL
     {
         public void CreatePartijuitslag(Partijuitslag partijuitslag)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public void DeletePartijuitslag(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public List<Partijuitslag> RetrieveAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+                return null;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public Partijuitslag RetrievePartijuitslag(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+                return null;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public void UpdatePartijuitslag(Partijuitslag partijuitslag)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
     }
 }

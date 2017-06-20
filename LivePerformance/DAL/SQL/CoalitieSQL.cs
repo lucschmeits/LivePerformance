@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,27 +13,74 @@ namespace LivePerformance.DAL.SQL
     {
         public void CreateCoalitie(Coalitie coalitie)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public void DeleteCoalitie(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
 
         public List<Coalitie> RetrieveAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+                return null;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public Coalitie RetrieveCoalitie(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+                return null;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         public void UpdateCoalitie(Coalitie coalitie)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                con.Close();
+            }
+            catch (Exception e)
+            {
+
+            }
         }
     }
 }

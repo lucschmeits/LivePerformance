@@ -34,6 +34,11 @@ namespace LivePerformance.Models
             Partij = partij;
         }
 
+        public Partijuitslag()
+        {
+            
+        }
+
         public int GetZetelsByStemmen(int stemmen)
         {
             return 0;
