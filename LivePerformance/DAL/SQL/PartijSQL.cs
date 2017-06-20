@@ -138,7 +138,7 @@ namespace LivePerformance.DAL.SQL
             {
                 var con = new SqlConnection(env.Con);
                 con.Open();
-                var query = "UPDATE Partijg SET Afkorting = @Afkorting, Naam = @Naam, Lijsttrekker = @Lijsttrekker WHERE id = @id";
+                var query = "UPDATE Partij SET Afkorting = @Afkorting, Naam = @Naam, Lijsttrekker = @Lijsttrekker WHERE id = @id";
                 var cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@id", partij.Id);
