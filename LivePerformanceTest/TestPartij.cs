@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace LivePerformanceTest
 {
     [TestClass]
-    public class UnitTest1
+    public class TestPartij
     {
         [TestMethod]
         public void TestMethod1()
