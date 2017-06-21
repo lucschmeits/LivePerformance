@@ -20,13 +20,14 @@ namespace LivePerformance.DAL.SQL
                 var con = new SqlConnection(env.Con);
 
                 con.Open();
-                var query1 = "INSERT INTO Partij (Afkorting, Naam, Lijsttrekker) VALUES (@Afkorting, @Naam, @Lijsttrekker)";
+                var query1 =
+                    "INSERT INTO Partij (Afkorting, Naam, Lijsttrekker) VALUES (@Afkorting, @Naam, @Lijsttrekker)";
                 var command = new SqlCommand(query1, con);
 
                 command.Parameters.AddWithValue("@Afkorting", partij.Afkorting);
                 command.Parameters.AddWithValue("@Naam", partij.Naam);
                 command.Parameters.AddWithValue("@Lijsttrekker", partij.Lijsttrekker);
-               
+
 
                 command.ExecuteNonQuery();
 
@@ -36,7 +37,7 @@ namespace LivePerformance.DAL.SQL
             {
                 throw e;
             }
-           
+
         }
 
         public void DeletePartij(int id)
@@ -70,12 +71,40 @@ namespace LivePerformance.DAL.SQL
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    var partijUitslag = new Partijuitslag(reader.GetInt32(0), reader.GetDateTime(2), reader.GetInt32(5), reader.GetDecimal(3), reader.GetInt32(4), RetrievePartij(reader.GetInt32(1)));
+                    var partijUitslag = new Partijuitslag(reader.GetInt32(0), reader.GetDateTime(2), reader.GetInt32(5),
+                        reader.GetDecimal(3), reader.GetInt32(4), RetrievePartij(reader.GetInt32(1)));
                     returnList.Add(partijUitslag);
                 }
                 con.Close();
                 return returnList;
-                
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public List<Partij> PartijByCoalitie(int id)
+        {
+            try
+            {
+                var returnList = new List<Partij>();
+                var con = new SqlConnection(env.Con);
+                con.Open();
+                var cmdString =
+                    "SELECT Partij.* FROM Coalitie_Partij INNER JOIN Partij ON Coalitie_Partij.PartijId = Partij.Id WHERE CoalitieId = @id";
+                var command = new SqlCommand(cmdString, con);
+                command.Parameters.AddWithValue("@id", id);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    var partij = new Partij(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
+                        reader.GetString(3));
+                    returnList.Add(partij);
+                }
+                con.Close();
+                return returnList;
             }
             catch (Exception e)
             {
@@ -95,7 +124,9 @@ namespace LivePerformance.DAL.SQL
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    var partij = new Partij(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+                    var partij = new Partij(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
+                        reader.GetString(3));
+                    partij.Partijuitslag = GetUitslagByPartijId(reader.GetInt32(0));
                     returnList.Add(partij);
                 }
                 con.Close();
@@ -120,15 +151,16 @@ namespace LivePerformance.DAL.SQL
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    partij= new Partij(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
-                   
+                    partij = new Partij(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
+                        reader.GetString(3));
+                    partij.Partijuitslag = GetUitslagByPartijId(reader.GetInt32(0));
                 }
                 con.Close();
                 return partij;
             }
             catch (Exception e)
             {
-              throw e;
+                throw e;
             }
         }
 
@@ -138,7 +170,8 @@ namespace LivePerformance.DAL.SQL
             {
                 var con = new SqlConnection(env.Con);
                 con.Open();
-                var query = "UPDATE Partij SET Afkorting = @Afkorting, Naam = @Naam, Lijsttrekker = @Lijsttrekker WHERE id = @id";
+                var query =
+                    "UPDATE Partij SET Afkorting = @Afkorting, Naam = @Naam, Lijsttrekker = @Lijsttrekker WHERE id = @id";
                 var cmd = new SqlCommand(query, con);
 
                 cmd.Parameters.AddWithValue("@id", partij.Id);
@@ -147,6 +180,35 @@ namespace LivePerformance.DAL.SQL
                 cmd.Parameters.AddWithValue("@Lijsttrekker", partij.Lijsttrekker);
                 cmd.ExecuteNonQuery();
                 con.Close();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public Partijuitslag GetUitslagByPartijId(int id)
+        {
+            try
+            {
+                var partijUitslag = new Partijuitslag();
+                var con = new SqlConnection(env.Con);
+               // con.Open();
+                var cmdString = "SELECT * FROM Partijuitslag WHERE PartijId = @id";
+                var command = new SqlCommand(cmdString, con);
+                command.Parameters.AddWithValue("@id", id);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    partijUitslag = new Partijuitslag(reader.GetInt32(0), reader.GetDateTime(2), reader.GetInt32(5),
+                        reader.GetDecimal(3), reader.GetInt32(4), RetrievePartij(reader.GetInt32(1)));
+
+                }
+               // con.Close();
+                return partijUitslag;
+
+
+
             }
             catch (Exception e)
             {

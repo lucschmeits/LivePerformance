@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LivePerformance.Models;
 
 namespace LivePerformance
 {
@@ -23,6 +24,16 @@ namespace LivePerformance
         public MainWindow()
         {
             InitializeComponent();
+            VulListView();
+        }
+
+        private void VulListView()
+        {
+            foreach (var partij in Partij.RetrieveAll())
+            {
+                ListPartij.Items.Add(partij);
+            }
+            
         }
     }
 }

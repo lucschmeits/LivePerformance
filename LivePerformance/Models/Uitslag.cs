@@ -27,5 +27,8 @@ namespace LivePerformance.Models
             Partijuislagen = partijuislagen;
         }
 
+        public Uitslag()
+        {
+        }
     }
 }

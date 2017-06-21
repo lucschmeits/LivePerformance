@@ -9,6 +9,6 @@ namespace LivePerformance.Models
 {
     public class env
     {
-        public static readonly string Con = "Data Source=desktop-luc;Initial Catalog=liveperformance;User ID=Luc;Password=Test1234;Encrypt=False;TrustServerCertificate=True";
+        public static readonly string Con = "Data Source=desktop-luc;Initial Catalog=liveperformance;User ID=Luc;Password=Test1234;Encrypt=False;TrustServerCertificate=True;MultipleActiveResultSets=true";
     }
 }

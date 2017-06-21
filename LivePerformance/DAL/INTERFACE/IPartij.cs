@@ -20,5 +20,7 @@ namespace LivePerformance.DAL.INTERFACE
         void UpdatePartij(Partij partij);
 
         List<Partijuitslag> GetUitslagByPartij(int id);
+
+        List<Partij> PartijByCoalitie(int id);
     }
 }

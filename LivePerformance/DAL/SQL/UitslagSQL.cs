@@ -17,11 +17,20 @@ namespace LivePerformance.DAL.SQL
             {
                 var con = new SqlConnection(env.Con);
                 con.Open();
+                var query1 = "INSERT INTO Uitslag (Naam, Datum) VALUES (@Naam, @Datum)";
+                var command = new SqlCommand(query1, con);
+
+                command.Parameters.AddWithValue("@Naam", uitslag.Naam);
+                command.Parameters.AddWithValue("@Datum", uitslag.Datum);
+               
+
+
+                command.ExecuteNonQuery();
                 con.Close();
             }
             catch (Exception e)
             {
-
+                throw e;
             }
         }
 
@@ -31,11 +40,15 @@ namespace LivePerformance.DAL.SQL
             {
                 var con = new SqlConnection(env.Con);
                 con.Open();
+                var query1 = "DELETE FROM Uitslag WHERE Id = @id";
+                var command = new SqlCommand(query1, con);
+                command.Parameters.AddWithValue("@Id", id);
+                command.ExecuteNonQuery();
                 con.Close();
             }
             catch (Exception e)
             {
-
+                throw e;
             }
         }
 
@@ -43,14 +56,23 @@ namespace LivePerformance.DAL.SQL
         {
             try
             {
+                var returnList = new List<Uitslag>();
                 var con = new SqlConnection(env.Con);
                 con.Open();
+                var cmdString = "SELECT * FROM Uitslag";
+                var command = new SqlCommand(cmdString, con);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                  //  var uitslag = new Uitslag(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2), );
+                   // returnList.Add(uitslag);
+                }
                 con.Close();
-                return null;
+                return returnList;
             }
             catch (Exception e)
             {
-                return null;
+                throw e;
             }
         }
 
@@ -58,14 +80,24 @@ namespace LivePerformance.DAL.SQL
         {
             try
             {
+                var uitslag = new Uitslag();
                 var con = new SqlConnection(env.Con);
                 con.Open();
+                var cmdString = "SELECT * FROM Uitslag WHERE Id = @id";
+                var command = new SqlCommand(cmdString, con);
+                command.Parameters.AddWithValue("@Id", id);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    // uitslag = new Uitslag(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2), );
+
+                }
                 con.Close();
-                return null;
+                return uitslag;
             }
             catch (Exception e)
             {
-                return null;
+                throw e;
             }
         }
 
@@ -73,14 +105,24 @@ namespace LivePerformance.DAL.SQL
         {
             try
             {
+                var uitslag = new Uitslag();
                 var con = new SqlConnection(env.Con);
                 con.Open();
+                var cmdString = "SELECT * FROM Uitslag WHERE Datum = @Datum";
+                var command = new SqlCommand(cmdString, con);
+                command.Parameters.AddWithValue("@Datum", datum);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    // uitslag = new Uitslag(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2), );
+
+                }
                 con.Close();
-                return null;
+                return uitslag;
             }
             catch (Exception e)
             {
-                return null;
+                throw e;
             }
         }
 
@@ -90,11 +132,20 @@ namespace LivePerformance.DAL.SQL
             {
                 var con = new SqlConnection(env.Con);
                 con.Open();
+                var query = "UPDATE Uitslag SET Naam = @Naam, Datum = @Datum WHERE id = @id";
+                var cmd = new SqlCommand(query, con);
+
+                cmd.Parameters.AddWithValue("@id", uitslag.Id);
+                cmd.Parameters.AddWithValue("@Naam", uitslag.Naam);
+                cmd.Parameters.AddWithValue("@Datum", uitslag.Datum);
+               
+
+                cmd.ExecuteNonQuery();
                 con.Close();
             }
             catch (Exception e)
             {
-
+                throw e;
             }
         }
     }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace LivePerformance.Models
 {
@@ -46,7 +48,23 @@ namespace LivePerformance.Models
 
         public void ExportCoalitie(Coalitie coalitie)
         {
-            
+            try
+            {
+                string path = @"C:\Users\Luc\Google Drive\Fontys\Leerjaar 1\Semester 2\Live performance\Coalitie.txt";
+                File.WriteAllText(path, String.Empty);
+                using (StreamWriter sw = new StreamWriter(path))
+                {
+                    //foreach (var user in users)
+                    //{
+                    //    sw.WriteLine(user.Naam + ";" + user.Achternaam + ";" + user.Leeftijd);
+                    //}
+                    //// users.Clear();
+                }
+            }
+            catch (IOException e)
+            {
+                MessageBox.Show("Het wegschrijven is niet gelukt :" + e.Message);
+            }
         }
     }
 }
