@@ -18,19 +18,28 @@ namespace LivePerformance.DAL.SQL
             {
                 var con = new SqlConnection(env.Con);
                 con.Open();
-                var query1 = "INSERT INTO Coalitie (Premier, Zetels, Naam) VALUES (@Premier, @Zetels, @Naam)";
+                var query1 = "INSERT INTO Coalitie (Premier, Zetels, Naam) VALUES (@Premier, @Zetels, @Naam);SELECT CAST(scope_identity() AS int)";
                 var command = new SqlCommand(query1, con);
 
                 command.Parameters.AddWithValue("@Premier", coalitie.Premier);
                 command.Parameters.AddWithValue("@Zetels", coalitie.Zetels);
                 command.Parameters.AddWithValue("@Naam", coalitie.Naam);
 
-                command.ExecuteNonQuery();
+                var id = (int)command.ExecuteScalar();
+                foreach (var partij in coalitie.Partijen)
+                {
+                    command.CommandText = "INSERT INTO Coalitie_Partij (CoalitieId, PartijId) VALUES (@CoalitieId, @PartijId)";
+                    command.Parameters.AddWithValue("@CoalitieId", id);
+                    command.Parameters.AddWithValue("@PartijId", partij.Id);
+                   
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                }
                 con.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -46,9 +55,9 @@ namespace LivePerformance.DAL.SQL
                 command.ExecuteNonQuery();
                 con.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -72,9 +81,9 @@ namespace LivePerformance.DAL.SQL
                 con.Close();
                 return returnList;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -99,9 +108,9 @@ namespace LivePerformance.DAL.SQL
                 con.Close();
                 return coalitie;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -122,9 +131,9 @@ namespace LivePerformance.DAL.SQL
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
-            catch (Exception e)
+            catch (Exception )
             {
-                throw e;
+                throw;
             }
         }
     }

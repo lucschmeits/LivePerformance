@@ -45,7 +45,7 @@ namespace LivePerformance
                 partijenScherm.Show();
                 this.Hide();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show(
                     "Het aanpassen van de partij is niet gelukt. Controleer de VPN verbinding en probeer het opnieuw.");

@@ -65,8 +65,10 @@ namespace LivePerformance
                 }
                 var coalitie = new Models.Coalitie(lblPremier.Content.ToString(), totaal, txtNaam.Text, _partijList);
                 Models.Coalitie.CreateCoalitie(coalitie);
+                Models.Coalitie.ExportCoalitie(coalitie);
+                MessageBox.Show("Het opslaan en exporten is gelukt.");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Het is niet gelukt om de coalitie op te slaan. Controleer de invoer.");
             }

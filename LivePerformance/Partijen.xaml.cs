@@ -35,7 +35,7 @@ namespace LivePerformance
                     lstPartijen.Items.Add(partij);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show(
                     "Het ophalen van de partijen is niet gelukt. Controleer de VPN verbinding en probeer het opnieuw.");
@@ -88,6 +88,30 @@ namespace LivePerformance
             var meerderheidScherm = new Meerderheid(partijList);
             meerderheidScherm.Show();
             this.Hide();
+        }
+
+        private void btnVerwijder_Click(object sender, RoutedEventArgs e)
+        {
+            var partij = (Partij)lstPartijen.SelectedItem;
+            if (partij != null)
+            {
+                try
+                {
+                    Partij.DeletePartij(partij.Id);
+                    var partijenScherm = new Partijen();
+                    partijenScherm.Show();
+                    this.Hide();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Het is niet gelukt om de partij te verwijderen. Waarschijnlijk is deze partij gekoppeld aan een uitslag en een coalitie.");
+                }
+          
+            }
+            else
+            {
+                MessageBox.Show("Selecteer een partij.");
+            }
         }
     }
 }

@@ -55,5 +55,10 @@ namespace LivePerformance.DAL.REPO
         {
             return _iPartij.GetUitslagByPartijId(id);
         }
+
+        public Partij GetPartijByUitslagId(int id)
+        {
+            return _iPartij.GetPartijByUitslagId(id);
+        }
     }
 }

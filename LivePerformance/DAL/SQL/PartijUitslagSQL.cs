@@ -12,6 +12,7 @@ namespace LivePerformance.DAL.SQL
 {
     public class PartijUitslagSQL : IPartijUitslag
     {
+        private SqlConnection _con = new SqlConnection(env.Con);
         public void CreatePartijuitslag(Partijuitslag partijuitslag)
         {
             try
@@ -30,9 +31,9 @@ namespace LivePerformance.DAL.SQL
                 command.ExecuteNonQuery();
                 con.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -48,9 +49,9 @@ namespace LivePerformance.DAL.SQL
                 command.ExecuteNonQuery();
                 con.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -62,23 +63,25 @@ namespace LivePerformance.DAL.SQL
                 var partijSql = new PartijSQL();
                 var partijRepo = new PartijREPO(partijSql);
                 var returnList = new List<Partijuitslag>();
-                var con = new SqlConnection(env.Con);
-                con.Open();
+                //var con = new SqlConnection(env.Con);
+                _con.Open();
                 var cmdString = "SELECT Partijuitslag.* FROM Partijuitslag INNER JOIN Partijuitslag_Uitslag ON Partijuitslag.Id = Partijuitslag_Uitslag.PartijuitslagId WHERE UitslagId = @id";
-                var command = new SqlCommand(cmdString, con);
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@id", id);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    var partijuislag = new Partijuitslag(reader.GetInt32(0), reader.GetDateTime(2), reader.GetInt32(5), reader.GetDecimal(3), reader.GetInt32(4), partijRepo.RetrievePartij(reader.GetInt32(1)));
+                    var partijuislag = new Partijuitslag(reader.GetInt32(0), reader.GetDateTime(2), reader.GetInt32(5), reader.GetDecimal(3), reader.GetInt32(4));
                     returnList.Add(partijuislag);
                 }
-                con.Close();
+                reader.Close();
+                _con.Close();
                 return returnList;
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -103,9 +106,9 @@ namespace LivePerformance.DAL.SQL
                 return returnList;
                 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -130,9 +133,9 @@ namespace LivePerformance.DAL.SQL
                 con.Close();
                 return partijUitslag;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -154,9 +157,9 @@ namespace LivePerformance.DAL.SQL
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 

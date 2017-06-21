@@ -55,11 +55,11 @@ namespace LivePerformance
                 var partijUitslag = new Partijuitslag(stemmen, _partij);
                 Partijuitslag.CreatePartijuitslag(partijUitslag);
             }
-            catch (FormatException fe)
+            catch (FormatException)
             {
                 MessageBox.Show("Er dient een cijfer ingegeven te worden in het veld stemmen.");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Er ging iets mis met het opslaan van de partijuitslag. Controleer de VPN en probeer het nogmaals.");
             }

@@ -59,5 +59,19 @@ namespace LivePerformance.Models
             var uitslagRepo = new UitslagREPO(uislagSql);
             uitslagRepo.CreateUitslag(uitslag);
         }
+
+        public static void DeleteUitslag(int id)
+        {
+            var uislagSql = new UitslagSQL();
+            var uitslagRepo = new UitslagREPO(uislagSql);
+            uitslagRepo.DeleteUitslag(id);
+        }
+
+        public static Uitslag RetrieveUitslag(int id)
+        {
+            var uislagSql = new UitslagSQL();
+            var uitslagRepo = new UitslagREPO(uislagSql);
+            return uitslagRepo.RetrieveUitslag(id);
+        }
     }
 }

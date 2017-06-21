@@ -66,5 +66,19 @@ namespace LivePerformance.Models
             var partijRepo = new PartijREPO(partijSql);
             return partijRepo.GetUitslagByPartijId(id);
         }
+
+        public static Partij GetPartijByUitslagId(int id)
+        {
+            var partijSql = new PartijSQL();
+            var partijRepo = new PartijREPO(partijSql);
+            return partijRepo.GetPartijByUitslagId(id);
+        }
+
+        public static void DeletePartij(int id)
+        {
+            var partijSql = new PartijSQL();
+            var partijRepo = new PartijREPO(partijSql);
+            partijRepo.DeletePartij(id);
+        }
     }
 }

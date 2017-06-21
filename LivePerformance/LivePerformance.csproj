@@ -72,6 +72,12 @@
     <Compile Include="PartijUitslag.xaml.cs">
       <DependentUpon>PartijUitslag.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PasStemmenAan.xaml.cs">
+      <DependentUpon>PasStemmenAan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UitslagAanpassen.xaml.cs">
+      <DependentUpon>UitslagAanpassen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Uitslagen.xaml.cs">
       <DependentUpon>Uitslagen.xaml</DependentUpon>
     </Compile>
@@ -124,6 +130,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PartijUitslag.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PasStemmenAan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UitslagAanpassen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

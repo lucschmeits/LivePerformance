@@ -34,9 +34,9 @@ namespace LivePerformance.DAL.SQL
                
                 con.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -52,9 +52,9 @@ namespace LivePerformance.DAL.SQL
                 command.ExecuteNonQuery();
                 con.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -71,14 +71,15 @@ namespace LivePerformance.DAL.SQL
                 while (reader.Read())
                 {
                   var uitslag = new Uitslag(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2));
+                
                   returnList.Add(uitslag);
                 }
                 con.Close();
                 return returnList;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -95,15 +96,15 @@ namespace LivePerformance.DAL.SQL
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    // uitslag = new Uitslag(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2), );
+                     uitslag = new Uitslag(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2));
 
                 }
                 con.Close();
                 return uitslag;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -126,9 +127,9 @@ namespace LivePerformance.DAL.SQL
                 con.Close();
                 return uitslag;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -149,9 +150,9 @@ namespace LivePerformance.DAL.SQL
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
     }

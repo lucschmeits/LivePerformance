@@ -54,7 +54,7 @@ namespace LivePerformance
                 partijenScherm.Show();
                 this.Hide();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Er is iets misgegaan met het toevoegen van een nieuwe partij. Controleer de VPN verbinding en probeer het opnieuw");
             }

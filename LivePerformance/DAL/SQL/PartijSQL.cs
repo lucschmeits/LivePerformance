@@ -34,9 +34,9 @@ namespace LivePerformance.DAL.SQL
 
                 con.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
 
         }
@@ -53,9 +53,9 @@ namespace LivePerformance.DAL.SQL
                 command.ExecuteNonQuery();
                 con.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -80,9 +80,9 @@ namespace LivePerformance.DAL.SQL
                 return returnList;
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -107,9 +107,9 @@ namespace LivePerformance.DAL.SQL
                 con.Close();
                 return returnList;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -138,9 +138,9 @@ namespace LivePerformance.DAL.SQL
                 _con.Close();
                 return returnList;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -167,9 +167,9 @@ namespace LivePerformance.DAL.SQL
               //  _con.Close();
                 return partij;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -190,9 +190,9 @@ namespace LivePerformance.DAL.SQL
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
 
@@ -220,10 +220,41 @@ namespace LivePerformance.DAL.SQL
 
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                throw e;
+                throw;
             }
         }
+
+        public Partij GetPartijByUitslagId(int id)
+        {
+            try
+            {
+                var partij = new Partij();
+                //var con = new SqlConnection(env.Con);
+                _con.Open();
+                var cmdString = "SELECT Partij.*, Partijuitslag.Stemmen FROM Partij INNER JOIN Partijuitslag ON Partij.Id = Partijuitslag.PartijId WHERE Partijuitslag.Id = @id";
+                var command = new SqlCommand(cmdString, _con);
+                command.Parameters.AddWithValue("@id", id);
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    partij = new Partij(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
+                        reader.GetString(3));
+                    if (!reader.IsDBNull(4))
+                    {
+                        partij.Stemmen = reader.GetInt32(4);
+                    }
+                }
+                  _con.Close();
+                return partij;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+       
     }
 }

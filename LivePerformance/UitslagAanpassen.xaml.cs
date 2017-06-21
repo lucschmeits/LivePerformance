@@ -16,14 +16,16 @@ using LivePerformance.Models;
 namespace LivePerformance
 {
     /// <summary>
-    /// Interaction logic for Uitslagen.xaml
+    /// Interaction logic for UitslagAanpassen.xaml
     /// </summary>
-    public partial class Uitslagen : Window
+    public partial class UitslagAanpassen : Window
     {
-        public Uitslagen()
+        private readonly Uitslag _uitslag;
+        public UitslagAanpassen(Uitslag uitslag)
         {
             InitializeComponent();
-            vulList();
+            _uitslag = uitslag;
+            VulTxt();
         }
 
         private void btnHome_Click(object sender, RoutedEventArgs e)
@@ -33,43 +35,39 @@ namespace LivePerformance
             this.Hide();
         }
 
-        private void vulList()
+        private void VulTxt()
         {
             try
             {
-                foreach (var uitslag in Uitslag.RetrieveAll())
+                txtNaam.Text = _uitslag.Naam;
+                datePick.Text = _uitslag.Datum.ToString();
+                _uitslag.Partijuislagen = Partijuitslag.PartijUitslagByUitslagId(_uitslag.Id);
+                foreach (var uitslag in _uitslag.Partijuislagen)
                 {
-                    lstUitslag.Items.Add(uitslag);
+                    uitslag.Partij = Partij.GetPartijByUitslagId(uitslag.Id);
+                    lstPartij.Items.Add(uitslag.Partij);
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Er ging iets mis met het ophalen van de uitslagen. Controleer de VPN en probeer het nogmaals.");
+                MessageBox.Show("Er kunnen geen partijen worden opgehaald.");
             }
-        }
-
-        private void btnNieuweUitslag_Click(object sender, RoutedEventArgs e)
-        {
-            var nieuwUitslagScherm = new NieuweUitslag();
-            nieuwUitslagScherm.Show();
-            this.Hide();
+         
         }
 
         private void btnAanpassen_Click(object sender, RoutedEventArgs e)
         {
-            var uitslag = (Uitslag)lstUitslag.SelectedItem;
-            if (uitslag != null)
+            var partij = (Partij) lstPartij.SelectedItem;
+            if (partij != null)
             {
-                var uitslagAanpassen = new UitslagAanpassen(uitslag);
-                uitslagAanpassen.Show();
+                var zetelsAanpassen = new PasStemmenAan(partij, _uitslag);
+                zetelsAanpassen.Show();
                 this.Hide();
             }
             else
             {
-                MessageBox.Show("Selecteer een uitslag.");
+                MessageBox.Show("Selecteer een partij.");
             }
-            
-           
         }
     }
 }

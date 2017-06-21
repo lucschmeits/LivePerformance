@@ -55,9 +55,17 @@ namespace LivePerformance
 
         private void btnCoalitie_Click(object sender, RoutedEventArgs e)
         {
-            var coalitieScherm = new Coalitie(_partijList);
-            coalitieScherm.Show();
-            this.Hide();
+            if (Convert.ToInt32(lblZetels.Content) > 75)
+            {
+                var coalitieScherm = new Coalitie(_partijList);
+                coalitieScherm.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Het totale zetelaantal moet boven de 75 uitkomen.");
+            }
+            
         }
 
         private void SetColor()

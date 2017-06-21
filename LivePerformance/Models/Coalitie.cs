@@ -15,7 +15,7 @@ namespace LivePerformance.Models
         public int Id { get; private set; }
         public string Premier { get; private set; }
         public int Zetels { get; private set; }
-        public string Naam { get; private set; }
+        public string Naam { get;  set; }
         public List<Partij> Partijen { get; private set; }
 
         public Coalitie(int id, string premier, int zetels, string naam, List<Partij> partijen)
@@ -40,7 +40,7 @@ namespace LivePerformance.Models
 
         public string BepaalPremier(List<Partij> partijen)
         {
-            //var item = partijen.Max(x => x.Stemmen);
+         
             int max = (from l in partijen select l.Stemmen).Max();
             var partij = (from premier in partijen
                 where premier.Stemmen == max
@@ -59,7 +59,21 @@ namespace LivePerformance.Models
             var coalitieRepo = new CoalitieREPO(coalitieSql);
             coalitieRepo.CreateCoalitie(coalitie);
         }
-        public void ExportCoalitie(Coalitie coalitie)
+
+        public static Models.Coalitie RetrieveCoalitie(int id)
+        {
+            var coalitieSql = new CoalitieSQL();
+            var coalitieRepo = new CoalitieREPO(coalitieSql);
+            return coalitieRepo.RetrieveCoalitie(id);
+        }
+
+        public static  void UpdateCoalitie(Models.Coalitie coalitie)
+        {
+            var coalitieSql = new CoalitieSQL();
+            var coalitieRepo = new CoalitieREPO(coalitieSql);
+            coalitieRepo.UpdateCoalitie(coalitie);
+        }
+        public static void ExportCoalitie(Coalitie coalitie)
         {
             try
             {
@@ -67,12 +81,21 @@ namespace LivePerformance.Models
                 File.WriteAllText(path, String.Empty);
                 using (StreamWriter sw = new StreamWriter(path))
                 {
-                    //foreach (var user in users)
-                    //{
-                    //    sw.WriteLine(user.Naam + ";" + user.Achternaam + ";" + user.Leeftijd);
-                    //}
-                    //// users.Clear();
-                }
+                    sw.WriteLine("Coalitie voorstel Tweede Kamer");
+                    sw.WriteLine("==============================" + Environment.NewLine);
+                    sw.WriteLine("Van: Tjeenk Willink");
+                    sw.WriteLine("Aan: Z.M. Koning Willem-Alexander: Majesteit;" + Environment.NewLine);
+                    sw.WriteLine("Partij \t Zetels \t Lijsttrekker" + Environment.NewLine);
+                    
+                    foreach (var partij in coalitie.Partijen)
+                    {
+                        partij.Partijuitslag = Partij.GetUitslagByPartijId(partij.Id);
+                        sw.WriteLine(partij.Afkorting + "\t" + partij.Partijuitslag.Zetels + "\t" + "\t" + partij.Lijsttrekker);
+                    }
+
+                    sw.WriteLine("=============");
+                    sw.WriteLine("Totaal\t" + coalitie.Zetels.ToString() + "\t" + "Premier: " + coalitie.Premier);
+                   }
             }
             catch (IOException e)
             {

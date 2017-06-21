@@ -36,7 +36,7 @@ namespace LivePerformance
                     ListPartij.Items.Add(partij);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show(
                     "Het ophalen van de partijen is niet gelukt. Controleer de VPN verbinding en probeer het opnieuw.");

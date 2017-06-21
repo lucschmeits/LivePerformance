@@ -14,9 +14,9 @@ namespace LivePerformance.Models
         public DateTime Datum { get; private set; }
         public int Stemmen { get; private set; }
         public decimal Percentage { get; private set; }
-        public int Zetels { get; private set; }
+        public int Zetels { get;  set; }
 
-        public Partij Partij { get; private set; }
+        public Partij Partij { get;  set; }
 
         public Partijuitslag(int id, DateTime datum, int stemmen, decimal percentage, int zetels, Partij partij)
         {
@@ -34,6 +34,16 @@ namespace LivePerformance.Models
             Percentage = percentage;
             Zetels = zetels;
             Partij = partij;
+        }
+
+        public Partijuitslag(int id, DateTime datum, int stemmen, decimal percentage, int zetels)
+        {
+            Id = id;
+            Datum = datum;
+            Stemmen = stemmen;
+            Percentage = percentage;
+            Zetels = zetels;
+           
         }
 
         public Partijuitslag()
@@ -78,5 +88,14 @@ namespace LivePerformance.Models
             var partijuislagRepo = new PartijUitslagREPO(partijuitslagSql);
             return partijuislagRepo.PartijUitslagByUitslagId(id);
         }
+
+        public static void UpdatePartijuitslag(Partijuitslag partijuitslag)
+        {
+            var partijuitslagSql = new PartijUitslagSQL();
+            var partijuislagRepo = new PartijUitslagREPO(partijuitslagSql);
+            partijuislagRepo.UpdatePartijuitslag(partijuitslag);
+        }
+
+       
     }
 }

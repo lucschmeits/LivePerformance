@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="TestPartij.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestCoalitie.cs" />
+    <Compile Include="TestUitslag.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

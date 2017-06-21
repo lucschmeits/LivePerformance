@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,7 +43,7 @@ namespace LivePerformance
                     lstPartij.Items.Add(partij);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show(
                     "Het ophalen van de partijen is niet gelukt. Controleer de VPN verbinding en probeer het opnieuw.");
@@ -71,7 +72,11 @@ namespace LivePerformance
                 uitslagenScherm.Show();
                 this.Hide();
             }
-            catch (Exception ex)
+            catch (SqlException)
+            {
+                MessageBox.Show("De ingevoerde naam bestaat al en moet uniek zijn.");
+            }
+            catch (Exception)
             {
                 MessageBox.Show(
                     "Het is niet gelukt om deze uitslag op te slaan. Controleer de ingevulde velden en de VPN.");
