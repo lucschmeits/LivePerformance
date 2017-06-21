@@ -15,7 +15,7 @@ namespace LivePerformance.Models
         public string Naam { get; private set; }
         public string Lijsttrekker { get; private set; }
 
-        public Partijuitslag Partijuitslag { get;  set; }
+        public int Stemmen { get;  set; }
 
         public Partij(string afkorting, string naam, string lijsttrekker)
         {
@@ -43,6 +43,13 @@ namespace LivePerformance.Models
             var partijRepo = new PartijREPO(partijSql);
 
             return partijRepo.RetrieveAll();
+        }
+
+        public static void CreatePartij(Partij partij)
+        {
+            var partijSql = new PartijSQL();
+            var partijRepo = new PartijREPO(partijSql);
+            partijRepo.CreatePartij(partij);
         }
     }
 }

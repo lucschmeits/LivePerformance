@@ -13,6 +13,7 @@ namespace LivePerformance.DAL.SQL
 {
     public class PartijSQL : IPartij
     {
+        private SqlConnection _con = new SqlConnection(env.Con);
         public void CreatePartij(Partij partij)
         {
             try
@@ -117,19 +118,24 @@ namespace LivePerformance.DAL.SQL
             try
             {
                 var returnList = new List<Partij>();
-                var con = new SqlConnection(env.Con);
-                con.Open();
-                var cmdString = "SELECT * FROM Partij";
-                var command = new SqlCommand(cmdString, con);
+                
+                _con.Open();
+                var cmdString = "SELECT Partij.*, Partijuitslag.Stemmen FROM Partij LEFT JOIN Partijuitslag ON Partij.Id = Partijuitslag.PartijId";
+                var command = new SqlCommand(cmdString, _con);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     var partij = new Partij(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
                         reader.GetString(3));
-                    partij.Partijuitslag = GetUitslagByPartijId(reader.GetInt32(0));
+                    if (!reader.IsDBNull(4))
+                    {
+                        partij.Stemmen = reader.GetInt32(4);
+                    }
+                  
                     returnList.Add(partij);
                 }
-                con.Close();
+                reader.Close();
+                _con.Close();
                 return returnList;
             }
             catch (Exception e)
@@ -143,19 +149,22 @@ namespace LivePerformance.DAL.SQL
             try
             {
                 var partij = new Partij();
-                var con = new SqlConnection(env.Con);
-                con.Open();
-                var cmdString = "SELECT * FROM Partij WHERE Id = @id";
-                var command = new SqlCommand(cmdString, con);
+                //var con = new SqlConnection(env.Con);
+                _con.Open();
+                var cmdString = "SELECT Partij.*, Partijuitslag.Stemmen FROM Partij INNER JOIN Partijuitslag ON Partij.Id = Partijuitslag.PartijId WHERE Partij.Id = @id";
+                var command = new SqlCommand(cmdString, _con);
                 command.Parameters.AddWithValue("@id", id);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
                     partij = new Partij(reader.GetInt32(0), reader.GetString(1), reader.GetString(2),
                         reader.GetString(3));
-                    partij.Partijuitslag = GetUitslagByPartijId(reader.GetInt32(0));
+                    if (!reader.IsDBNull(4))
+                    {
+                        partij.Stemmen = reader.GetInt32(4);
+                    }
                 }
-                con.Close();
+                _con.Close();
                 return partij;
             }
             catch (Exception e)
@@ -192,10 +201,10 @@ namespace LivePerformance.DAL.SQL
             try
             {
                 var partijUitslag = new Partijuitslag();
-                var con = new SqlConnection(env.Con);
+                //var con = new SqlConnection(env.Con);
                // con.Open();
                 var cmdString = "SELECT * FROM Partijuitslag WHERE PartijId = @id";
-                var command = new SqlCommand(cmdString, con);
+                var command = new SqlCommand(cmdString, _con);
                 command.Parameters.AddWithValue("@id", id);
                 var reader = command.ExecuteReader();
                 while (reader.Read())
@@ -204,6 +213,7 @@ namespace LivePerformance.DAL.SQL
                         reader.GetDecimal(3), reader.GetInt32(4), RetrievePartij(reader.GetInt32(1)));
 
                 }
+                reader.Close();
                // con.Close();
                 return partijUitslag;
 

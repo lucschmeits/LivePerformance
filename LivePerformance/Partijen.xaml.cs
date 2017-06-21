@@ -10,30 +10,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LivePerformance.Models;
 
 namespace LivePerformance
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Partijen.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Partijen : Window
     {
-        public MainWindow()
+        public Partijen()
         {
             InitializeComponent();
-            VulListView();
+            VulList();
         }
 
-        private void VulListView()
+        private void VulList()
         {
             try
             {
                 foreach (var partij in Partij.RetrieveAll())
                 {
-                    ListPartij.Items.Add(partij);
+                    lstPartijen.Items.Add(partij);
                 }
             }
             catch (Exception ex)
@@ -42,20 +41,19 @@ namespace LivePerformance
                     "Het ophalen van de partijen is niet gelukt. Controleer de VPN verbinding en probeer het opnieuw.");
             }
            
-            
         }
 
-        private void btnPartij_Click(object sender, RoutedEventArgs e)
+        private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            var partijenScherm = new Partijen();
-            partijenScherm.Show();
+            var homeScherm = new MainWindow();
+            homeScherm.Show();
             this.Hide();
         }
 
-        private void btnUitslagen_Click(object sender, RoutedEventArgs e)
+        private void btnNieuwePartij_Click(object sender, RoutedEventArgs e)
         {
-            var uitslagenScherm = new Uitslagen();
-            uitslagenScherm.Show();
+            var nieuwePartijSherm = new NieuwePartij();
+            nieuwePartijSherm.Show();
             this.Hide();
         }
     }

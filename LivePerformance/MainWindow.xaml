@@ -11,15 +11,13 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn  Header="Partij" Width="150" DisplayMemberBinding="{Binding Afkorting}"/>
-                    <GridViewColumn  Header="Stemmen" Width="150" DisplayMemberBinding="{Binding Partijuitslag}"/>
+                    <GridViewColumn  Header="Stemmen" Width="150" DisplayMemberBinding="{Binding Stemmen}"/>
                 </GridView>
             </ListView.View>
             <Button Content="Button" Height="100" Width="75"/>
         </ListView>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="383,29,0,0" VerticalAlignment="Top" Width="124" Height="34"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="383,84,0,0" VerticalAlignment="Top" Width="124" Height="34"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="383,135,0,0" VerticalAlignment="Top" Width="124" Height="34"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="383,184,0,0" VerticalAlignment="Top" Width="124" Height="34"/>
+        <Button x:Name="btnPartij" Content="Partijen" HorizontalAlignment="Left" Margin="383,29,0,0" VerticalAlignment="Top" Width="124" Height="34" Click="btnPartij_Click"/>
+        <Button x:Name="btnUitslagen" Content="Uitslagen" HorizontalAlignment="Left" Margin="383,84,0,0" VerticalAlignment="Top" Width="124" Height="34" Click="btnUitslagen_Click"/>
 
     </Grid>
 </Window>

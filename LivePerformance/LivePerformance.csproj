@@ -54,6 +54,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="NieuwePartij.xaml.cs">
+      <DependentUpon>NieuwePartij.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Uitslagen.xaml.cs">
+      <DependentUpon>Uitslagen.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -78,6 +84,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NieuwePartij.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Partijen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Uitslagen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Coalitie.cs" />
@@ -85,6 +103,9 @@
     <Compile Include="Models\Partij.cs" />
     <Compile Include="Models\Partijuitslag.cs" />
     <Compile Include="Models\Uitslag.cs" />
+    <Compile Include="Partijen.xaml.cs">
+      <DependentUpon>Partijen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
