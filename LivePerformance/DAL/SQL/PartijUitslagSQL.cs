@@ -18,11 +18,11 @@ namespace LivePerformance.DAL.SQL
             {
                 var con = new SqlConnection(env.Con);
                 con.Open();
-                var query1 = "INSERT INTO Partij (PartijId, Datum, Percentage, Zetels, Stemmen) VALUES (@PartijId, @Datum, @Percentage, @Zetels, @Stemmen)";
+                var query1 = "INSERT INTO Partijuitslag (PartijId, Datum, Percentage, Zetels, Stemmen) VALUES (@PartijId, @Datum, @Percentage, @Zetels, @Stemmen)";
                 var command = new SqlCommand(query1, con);
 
                 command.Parameters.AddWithValue("@PartijId", partijuitslag.Partij.Id);
-                command.Parameters.AddWithValue("@Datum", partijuitslag.Datum);
+                command.Parameters.AddWithValue("@Datum", DateTime.Today);
                 command.Parameters.AddWithValue("@Percentage", partijuitslag.Percentage);
                 command.Parameters.AddWithValue("@Zetels", partijuitslag.Zetels);
                 command.Parameters.AddWithValue("@Stemmen", partijuitslag.Stemmen);

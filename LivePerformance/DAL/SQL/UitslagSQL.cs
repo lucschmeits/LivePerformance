@@ -17,15 +17,21 @@ namespace LivePerformance.DAL.SQL
             {
                 var con = new SqlConnection(env.Con);
                 con.Open();
-                var query1 = "INSERT INTO Uitslag (Naam, Datum) VALUES (@Naam, @Datum)";
+                var query1 = "INSERT INTO Uitslag (Naam, Datum) VALUES (@Naam, @Datum);SELECT CAST(scope_identity() AS int)";
                 var command = new SqlCommand(query1, con);
-
                 command.Parameters.AddWithValue("@Naam", uitslag.Naam);
                 command.Parameters.AddWithValue("@Datum", uitslag.Datum);
+                var id = (int)command.ExecuteScalar();
+
+                foreach (var partijuitslag in uitslag.Partijuislagen)
+                {
+                    command.CommandText = "INSERT INTO Partijuitslag_Uitslag (PartijuitslagId, UitslagId) VALUES (@partijUitslagId, @uitslagId)";
+                    command.Parameters.AddWithValue("@partijUitslagId", partijuitslag.Id);
+                    command.Parameters.AddWithValue("@uitslagId", id);
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                }
                
-
-
-                command.ExecuteNonQuery();
                 con.Close();
             }
             catch (Exception e)
@@ -64,8 +70,8 @@ namespace LivePerformance.DAL.SQL
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                  //  var uitslag = new Uitslag(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2), );
-                   // returnList.Add(uitslag);
+                  var uitslag = new Uitslag(reader.GetInt32(0), reader.GetString(1), reader.GetDateTime(2));
+                  returnList.Add(uitslag);
                 }
                 con.Close();
                 return returnList;

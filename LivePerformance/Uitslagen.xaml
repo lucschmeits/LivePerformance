@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Uitslagen" Height="324.194" Width="561.29">
     <Grid>
-        <ListView HorizontalAlignment="Left" Height="273" Margin="10,10,0,0" VerticalAlignment="Top" Width="307">
+        <ListView x:Name="lstUitslag" HorizontalAlignment="Left" Height="273" Margin="10,10,0,0" VerticalAlignment="Top" Width="322">
             <ListView.View>
                 <GridView>
                     <GridViewColumn   Header="Naam" Width="150" DisplayMemberBinding="{Binding Naam}"/>
@@ -15,7 +15,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnNieuweUitslag" Content="Nieuwe Uitslag" HorizontalAlignment="Left" Margin="398,11,0,0" VerticalAlignment="Top" Width="145" Height="32"/>
+        <Button x:Name="btnNieuweUitslag" Content="Nieuwe Uitslag" HorizontalAlignment="Left" Margin="398,11,0,0" VerticalAlignment="Top" Width="145" Height="32" Click="btnNieuweUitslag_Click"/>
         <Button x:Name="btnAanpassen" Content="Aanpassen" HorizontalAlignment="Left" Margin="398,59,0,0" VerticalAlignment="Top" Width="145" Height="32"/>
         <Button x:Name="btnHome" Content="Home" HorizontalAlignment="Left" Margin="398,107,0,0" VerticalAlignment="Top" Width="145" Height="32" Click="btnHome_Click"/>
 

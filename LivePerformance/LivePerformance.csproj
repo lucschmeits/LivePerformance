@@ -54,15 +54,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Coalitie.xaml.cs">
+      <DependentUpon>Coalitie.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Meerderheid.xaml.cs">
+      <DependentUpon>Meerderheid.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NieuwePartij.xaml.cs">
       <DependentUpon>NieuwePartij.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="NieuweUitslag.xaml.cs">
+      <DependentUpon>NieuweUitslag.xaml</DependentUpon>
     </Compile>
     <Compile Include="PartijAanpassen.xaml.cs">
       <DependentUpon>PartijAanpassen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PartijUitslag.xaml.cs">
+      <DependentUpon>PartijUitslag.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Uitslagen.xaml.cs">
       <DependentUpon>Uitslagen.xaml</DependentUpon>
     </Compile>
+    <Page Include="Coalitie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -87,7 +103,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Meerderheid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NieuwePartij.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NieuweUitslag.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -96,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Partijen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PartijUitslag.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

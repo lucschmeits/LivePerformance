@@ -12,7 +12,7 @@ namespace LivePerformance.DAL.SQL
 {
     public class CoalitieSQL : ICoalitie
     {
-        public void CreateCoalitie(Coalitie coalitie)
+        public void CreateCoalitie(Models.Coalitie coalitie)
         {
             try
             {
@@ -52,13 +52,13 @@ namespace LivePerformance.DAL.SQL
             }
         }
 
-        public List<Coalitie> RetrieveAll()
+        public List<Models.Coalitie> RetrieveAll()
         {
             try
             {
                 var partijSql = new PartijSQL();
                 var partijRepo = new PartijREPO(partijSql);
-                var returnList = new List<Coalitie>();
+                var returnList = new List<Models.Coalitie>();
                 var con = new SqlConnection(env.Con);
                 con.Open();
                 var cmdString = "SELECT * FROM Coalitie";
@@ -66,7 +66,7 @@ namespace LivePerformance.DAL.SQL
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    var coalitie  = new Coalitie(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), partijRepo.PartijByCoalitie(reader.GetInt32(0)));
+                    var coalitie  = new Models.Coalitie(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), partijRepo.PartijByCoalitie(reader.GetInt32(0)));
                     returnList.Add(coalitie);
                 }
                 con.Close();
@@ -78,13 +78,13 @@ namespace LivePerformance.DAL.SQL
             }
         }
 
-        public Coalitie RetrieveCoalitie(int id)
+        public Models.Coalitie RetrieveCoalitie(int id)
         {
             try
             {
                 var partijSql = new PartijSQL();
                 var partijRepo = new PartijREPO(partijSql);
-                var coalitie = new Coalitie();
+                var coalitie = new Models.Coalitie();
                 var con = new SqlConnection(env.Con);
                 con.Open();
                 var cmdString = "SELECT * FROM Coalitie WHERE Id = @id";
@@ -93,7 +93,7 @@ namespace LivePerformance.DAL.SQL
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    coalitie = new Coalitie(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), partijRepo.PartijByCoalitie(reader.GetInt32(0)));
+                    coalitie = new Models.Coalitie(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetString(3), partijRepo.PartijByCoalitie(reader.GetInt32(0)));
                    
                 }
                 con.Close();
@@ -105,7 +105,7 @@ namespace LivePerformance.DAL.SQL
             }
         }
 
-        public void UpdateCoalitie(Coalitie coalitie)
+        public void UpdateCoalitie(Models.Coalitie coalitie)
         {
             try
             {

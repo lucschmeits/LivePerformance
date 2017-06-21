@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LivePerformance.DAL.REPO;
+using LivePerformance.DAL.SQL;
 
 namespace LivePerformance.Models
 {
@@ -39,19 +41,42 @@ namespace LivePerformance.Models
             
         }
 
-        public int GetZetelsByStemmen(int stemmen)
+        public Partijuitslag(int stemmen, Partij partij)
         {
-            return 0;
+            Stemmen = stemmen;
+            Partij = partij;
+        }
+
+        public int GetZetelsByStemmen(int stemmen, int totaalstemmen)
+        {
+            var zetels = totaalstemmen / stemmen * 150;
+            zetels = Convert.ToInt32(Math.Round(Convert.ToDecimal(zetels), 0));
+            return zetels;
         }
 
         public decimal GetPercentageByZetels(int zetels)
         {
+         
             return 0;
         }
 
         public override string ToString()
         {
             return Stemmen.ToString();
+        }
+
+        public static void CreatePartijuitslag(Partijuitslag partijuitslag)
+        {
+            var partijuitslagSql = new PartijUitslagSQL();
+            var partijuislagRepo = new PartijUitslagREPO(partijuitslagSql);
+            partijuislagRepo.CreatePartijuitslag(partijuitslag);
+        }
+
+        public static List<Partijuitslag> PartijUitslagByUitslagId(int id)
+        {
+            var partijuitslagSql = new PartijUitslagSQL();
+            var partijuislagRepo = new PartijUitslagREPO(partijuitslagSql);
+            return partijuislagRepo.PartijUitslagByUitslagId(id);
         }
     }
 }

@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LivePerformance"
         mc:Ignorable="d"
-        Title="Home" Height="350" Width="525">
+        Title="Home" Height="350" Width="648.065">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="332*"/>
+            <ColumnDefinition Width="185*"/>
+        </Grid.ColumnDefinitions>
         <ListView x:Name="ListPartij" HorizontalAlignment="Left" Height="264" Margin="20,29,0,0" VerticalAlignment="Top" Width="310">
             <ListView.View>
                 <GridView>
@@ -16,8 +20,9 @@
             </ListView.View>
             <Button Content="Button" Height="100" Width="75"/>
         </ListView>
-        <Button x:Name="btnPartij" Content="Partijen" HorizontalAlignment="Left" Margin="383,29,0,0" VerticalAlignment="Top" Width="124" Height="34" Click="btnPartij_Click"/>
-        <Button x:Name="btnUitslagen" Content="Uitslagen" HorizontalAlignment="Left" Margin="383,84,0,0" VerticalAlignment="Top" Width="124" Height="34" Click="btnUitslagen_Click"/>
+        <Button x:Name="btnPartij" Content="Partijen" HorizontalAlignment="Left" Margin="50.548,29,0,0" VerticalAlignment="Top" Width="124" Height="34" Click="btnPartij_Click" Grid.Column="1"/>
+        <Button x:Name="btnUitslagen" Content="Uitslagen" HorizontalAlignment="Left" Margin="50.548,84,0,0" VerticalAlignment="Top" Width="124" Height="34" Click="btnUitslagen_Click" Grid.Column="1"/>
+        <Button x:Name="btnPartijUitslag" Content="Partij Uitslag" Grid.Column="1" HorizontalAlignment="Left" Margin="51,145,0,0" VerticalAlignment="Top" Width="124" Height="34" Click="btnPartijUitslag_Click"/>
 
     </Grid>
 </Window>

@@ -9,15 +9,15 @@ namespace LivePerformance.DAL.INTERFACE
 {
     public interface ICoalitie
     {
-        List<Coalitie> RetrieveAll();
+        List<Models.Coalitie> RetrieveAll();
 
-        void CreateCoalitie(Coalitie coalitie);
+        void CreateCoalitie(Models.Coalitie coalitie);
 
-        Coalitie RetrieveCoalitie(int id);
+        Models.Coalitie RetrieveCoalitie(int id);
 
         void DeleteCoalitie(int id);
 
-        void UpdateCoalitie(Coalitie coalitie);
+        void UpdateCoalitie(Models.Coalitie coalitie);
 
         
     }

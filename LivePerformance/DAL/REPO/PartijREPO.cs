@@ -50,5 +50,10 @@ namespace LivePerformance.DAL.REPO
         {
             return _iPartij.PartijByCoalitie(id);
         }
+
+        public Partijuitslag GetUitslagByPartijId(int id)
+        {
+            return _iPartij.GetUitslagByPartijId(id);
+        }
     }
 }

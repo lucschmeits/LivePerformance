@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using LivePerformance.DAL.REPO;
+using LivePerformance.DAL.SQL;
 
 namespace LivePerformance.Models
 {
@@ -38,7 +40,12 @@ namespace LivePerformance.Models
 
         public string BepaalPremier(List<Partij> partijen)
         {
-            return Premier;
+            //var item = partijen.Max(x => x.Stemmen);
+            int max = (from l in partijen select l.Stemmen).Max();
+            var partij = (from premier in partijen
+                where premier.Stemmen == max
+                select premier).First();
+            return partij.Lijsttrekker;
         }
 
         public int GetTotaalZetels(List<Partij> partijen)
@@ -46,6 +53,12 @@ namespace LivePerformance.Models
             return 0;
         }
 
+        public static void CreateCoalitie(Models.Coalitie coalitie)
+        {
+            var coalitieSql = new CoalitieSQL();
+            var coalitieRepo = new CoalitieREPO(coalitieSql);
+            coalitieRepo.CreateCoalitie(coalitie);
+        }
         public void ExportCoalitie(Coalitie coalitie)
         {
             try

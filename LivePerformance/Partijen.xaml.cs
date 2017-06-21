@@ -72,5 +72,22 @@ namespace LivePerformance
             }
            
         }
+
+        private void btnMeerderheid_Click(object sender, RoutedEventArgs e)
+        {
+            var partijList = new List<Partij>();
+            var partijen = lstPartijen.SelectedItems;
+
+          
+            foreach (var partij in partijen)
+            {
+                var partijt = partij as Partij;
+                partijList.Add(partijt);
+            }
+
+            var meerderheidScherm = new Meerderheid(partijList);
+            meerderheidScherm.Show();
+            this.Hide();
+        }
     }
 }

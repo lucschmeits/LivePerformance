@@ -58,5 +58,20 @@ namespace LivePerformance
             uitslagenScherm.Show();
             this.Hide();
         }
+
+        private void btnPartijUitslag_Click(object sender, RoutedEventArgs e)
+        {
+            var partij = (Partij) ListPartij.SelectedItem;
+            if (partij != null)
+            {
+                var partijUitslag = new PartijUitslag(partij);
+                partijUitslag.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Er moet een partij geselecteerd zijn om de uitslag in te voeren.");
+            }
+        }
     }
 }
