@@ -56,5 +56,21 @@ namespace LivePerformance
             nieuwePartijSherm.Show();
             this.Hide();
         }
+
+        private void btnAanpassen_Click(object sender, RoutedEventArgs e)
+        {
+            var partij = (Partij) lstPartijen.SelectedItem;
+            if (partij != null)
+            {
+                var partijAanpassenScherm = new PartijAanpassen(partij);
+                partijAanpassenScherm.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Er moet een partij geselecteerd zijn om deze aan te passen.");
+            }
+           
+        }
     }
 }

@@ -51,5 +51,12 @@ namespace LivePerformance.Models
             var partijRepo = new PartijREPO(partijSql);
             partijRepo.CreatePartij(partij);
         }
+
+        public static void UpdatePartij(Partij partij)
+        {
+            var partijSql = new PartijSQL();
+            var partijRepo = new PartijREPO(partijSql);
+            partijRepo.UpdatePartij(partij);
+        }
     }
 }

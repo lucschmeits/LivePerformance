@@ -16,7 +16,7 @@
             </ListView.View>
         </ListView>
         <Button x:Name="btnNieuwePartij" Content="Nieuwe Partij" HorizontalAlignment="Left" Margin="423,10,0,0" VerticalAlignment="Top" Width="131" Height="34" Click="btnNieuwePartij_Click"/>
-        <Button x:Name="btnAanpassen" Content="Aanpassen" HorizontalAlignment="Left" Margin="423,60,0,0" VerticalAlignment="Top" Width="131" Height="34"/>
+        <Button x:Name="btnAanpassen" Content="Aanpassen" HorizontalAlignment="Left" Margin="423,60,0,0" VerticalAlignment="Top" Width="131" Height="34" Click="btnAanpassen_Click"/>
         <Button x:Name="btnHome" Content="Home" HorizontalAlignment="Left" Margin="423,110,0,0" VerticalAlignment="Top" Width="131" Height="34" Click="btnHome_Click"/>
         <Button x:Name="btnMeerderheid" Content="Meerderheid" HorizontalAlignment="Left" Margin="423,251,0,0" VerticalAlignment="Top" Width="131" Height="34"/>
 
